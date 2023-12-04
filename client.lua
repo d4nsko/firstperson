@@ -1,3 +1,27 @@
+-- Credits JiminyKroket
+
+Citizen.CreateThread(function()
+  local unarmedHash = `WEAPON_UNARMED`;
+  while true do
+    local sleep = 500
+    local wep = GetSelectedPedWeapon(PlayerPedId());
+    if (wep~=unarmedHash) then
+      sleep = 100
+      local camMode = (GetVehiclePedIsUsing(PlayerPedId(), true) ~= 0 and GetFollowVehicleCamViewMode()) or GetFollowPedCamViewMode()
+      if camMode ~= 4 then
+        sleep = 0
+        DisableControlAction(0, 24, true)
+        DisableControlAction(0, 69, true)
+        DisableControlAction(0, 70, true)
+        DisableControlAction(0, 92, true)
+        DisableControlAction(0, 257, true)
+        DisableControlAction(0, 331, true)
+      end
+    end
+    Wait(sleep)
+  end
+end)
+
 local shot = false
 local check = false
 local check2 = false
